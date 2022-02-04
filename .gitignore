@@ -1,0 +1,16 @@
+# very heavy
+node_modules/
+
+# local IDE settings
+.vscode/
+
+# environment variables
+.env
+
+# local builds
+dist/
+builds/
+
+# database residue
+db/migrations
+db/*.db*
