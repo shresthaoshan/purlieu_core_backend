@@ -1,5 +1,5 @@
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
@@ -7,9 +7,18 @@ generator client {
     provider = "prisma-client-js"
 }
 
-model Transactions {
-    id                Int     @id @default(autoincrement())
-    unique_identifier String
-    amount            Int     @default(0)
-    verified          Boolean @default(false)
+model Admins {
+    username String  @id @unique
+    email    String  @unique
+    password String
+    apps     CApps[]
+    verified Boolean @default(false)
+}
+
+model CApps {
+    id           String   @id @unique
+    name         String   @default("ClientApp")
+    registeredOn DateTime @default(now())
+    adminId      String   @unique
+    admin        Admins   @relation(fields: [adminId], references: [username])
 }

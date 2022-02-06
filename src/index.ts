@@ -4,6 +4,9 @@ import "reflect-metadata";
 // loading environment variables
 import "configs/env.configs";
 
+// immediate loaders
+import "loaders/utilities.loader";
+
 // loaders
 import serverLoader from "loaders/server.loader";
 import appLoader from "loaders/app.loader";

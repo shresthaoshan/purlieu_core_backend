@@ -2,12 +2,12 @@
 	"name": "purlieu_backend",
 	"version": "0.0.1",
 	"description": "Core system to monitor and control all transactions.",
-	"main": "src/server.ts",
 	"author": "Oshan Shrestha <os02411418@student.ku.edu.np>",
 	"license": "ISC",
 	"private": true,
 	"devDependencies": {
 		"@types/express": "^4.17.13",
+		"@types/jsonwebtoken": "^8.5.8",
 		"@types/node": "^17.0.14",
 		"cross-env": "^7.0.3",
 		"prisma": "^3.9.1",
@@ -20,6 +20,8 @@
 		"dotenv": "^16.0.0",
 		"express": "^4.17.2",
 		"express-async-errors": "^3.1.1",
+		"hash.js": "^1.1.7",
+		"jsonwebtoken": "^8.5.1",
 		"reflect-metadata": "^0.1.13",
 		"typedi": "^0.10.0"
 	},
