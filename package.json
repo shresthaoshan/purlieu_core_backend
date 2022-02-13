@@ -34,7 +34,7 @@
 		"db:update": "npx prisma generate --schema db/schema.prisma",
 		"db:sync": "yarn db:migrate dev --schema db/schema.prisma --name",
 		"db:reset": "yarn db:migrate reset --schema db/schema.prisma --name",
-		"app:build": "yarn clean && yarn db:update && tsc -p ./tsconfig.json && yarn db:sync auto_cd_trigger_sync",
+		"app:build": "yarn clean && yarn db:update && tsc -p ./tsconfig.json",
 		"app:prod": "cross-env NODE_PATH=./dist/src node dist/src/index.js",
 		"app:dev": "cross-env NODE_PATH=./src tsnd --respawn --transpile-only src/index.ts",
 		"test": "cross-env NODE_PATH=./src ts-mocha -p ./tsconfig.json ./src/**/*.spec.ts"
