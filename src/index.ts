@@ -8,18 +8,18 @@ import "configs/env.configs";
 import "loaders/utilities.loader";
 
 // loaders
-import serverLoader from "loaders/server.loader";
 import appLoader from "loaders/app.loader";
 import routesLoader from "loaders/routes.loader";
 import postMiddlewaresLoader from "loaders/postMiddlewares.loader";
 import preMiddlewaresLoader from "loaders/preMiddlewares.loader";
+import serverLoader from "loaders/server.loader";
 
 // init
 (async () => {
 	// loaders
-	await serverLoader();
+	await appLoader();
 	await preMiddlewaresLoader();
 	await routesLoader();
 	await postMiddlewaresLoader();
-	await appLoader();
+	await serverLoader();
 })();

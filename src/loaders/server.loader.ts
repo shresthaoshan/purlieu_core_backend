@@ -1,11 +1,11 @@
-import express from "express";
-import "express-async-errors";
-
+import envConfigs from "configs/env.configs";
+import { Application } from "express";
+import { createServer } from "http";
 import Container from "typedi";
 
 export default async () => {
-	const server = express();
+	const app: Application = Container.get("server");
 
-	Container.set("server", server);
-	console.log("SERVER:: ✅");
+	const server = createServer(app);
+	server.listen(envConfigs.PORT, () => console.log("APP:: STARTED! ✅"));
 };

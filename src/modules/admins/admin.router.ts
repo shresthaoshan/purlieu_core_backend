@@ -1,7 +1,7 @@
 import { Router } from "express";
 import adminAuthMdlwr from "middlewares/adminAuth.mdlwr";
 import Container from "typedi";
-import AdminController from "./admins.controller";
+import AdminController from "./admin.controller";
 
 const router = Router();
 

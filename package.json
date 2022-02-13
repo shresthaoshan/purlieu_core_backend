@@ -22,6 +22,7 @@
 		"express-async-errors": "^3.1.1",
 		"hash.js": "^1.1.7",
 		"jsonwebtoken": "^8.5.1",
+		"nanoid": "^3.2.0",
 		"reflect-metadata": "^0.1.13",
 		"typedi": "^0.10.0"
 	},
@@ -30,6 +31,7 @@
 		"build": "yarn app:build",
 		"start": "yarn app:prod",
 		"db:migrate": "npx prisma migrate",
+		"db:update": "npx prisma generate --schema db/schema.prisma",
 		"db:sync": "yarn db:migrate dev --schema db/schema.prisma --name",
 		"db:reset": "yarn db:migrate reset --schema db/schema.prisma --name",
 		"app:build": "yarn clean && tsc -p ./tsconfig.json && yarn db:sync auto_cd_trigger_sync",

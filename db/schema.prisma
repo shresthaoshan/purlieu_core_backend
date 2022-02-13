@@ -19,6 +19,9 @@ model CApps {
     id           String   @id @unique
     name         String   @default("ClientApp")
     registeredOn DateTime @default(now())
+    apiKey       String   @unique
+    apiSecret    String   @unique
+    callbackUrl  String?
     adminId      String   @unique
     admin        Admins   @relation(fields: [adminId], references: [username])
 }

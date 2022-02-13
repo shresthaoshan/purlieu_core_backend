@@ -1,4 +1,4 @@
-import { Handler } from "express";
+import { AuthedRequest, Handler } from "express";
 import Container, { Service } from "typedi";
 import AdminService from "./admin.service";
 
@@ -6,9 +6,10 @@ import AdminService from "./admin.service";
 export default class AdminController {
 	constructor(private readonly service = Container.get(AdminService)) {}
 
-	getHome: Handler = async (_, res) => {
+	getHome: Handler = async (req, res) => {
 		res.json({
 			check: true,
+			user: (req as AuthedRequest).auth,
 		});
 	};
 
