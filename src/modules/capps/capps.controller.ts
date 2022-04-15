@@ -12,6 +12,12 @@ export default class CAppsController {
 		});
 	};
 
+	getAppDetails: Handler = async (req, res) => {
+		const appId = req.params.id as string;
+		const response = await this.service.findById(appId);
+		res.json(response);
+	};
+
 	postCreate: Handler = async (req, res) => {
 		const { name = "" } = req.body;
 

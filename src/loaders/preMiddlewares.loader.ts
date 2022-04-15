@@ -1,6 +1,7 @@
 import { Application } from "express";
 import Container from "typedi";
 import { json, urlencoded } from "express";
+import cors from "cors";
 
 export default async () => {
 	const app: Application = Container.get("server");
@@ -10,6 +11,7 @@ export default async () => {
 			extended: false,
 		})
 	);
+	app.use(cors());
 	app.use(json());
 	console.log("PRE MIDDLEWARES:: ✅");
 };

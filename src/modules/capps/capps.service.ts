@@ -32,6 +32,23 @@ export default class CAppsService {
 		};
 	};
 
+	findById = async (appId: string) => {
+		const app = await this.db.cApps.findUnique({
+			where: {
+				id: appId,
+			},
+			select: {
+				id: true,
+				name: true,
+				adminId: true,
+				registeredOn: true,
+				callbackUrl: true,
+			},
+		});
+
+		return app;
+	};
+
 	list = async (adminId: string) => {
 		const apps = await this.db.cApps.findMany({
 			where: {

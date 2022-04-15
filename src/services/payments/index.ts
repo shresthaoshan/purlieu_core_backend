@@ -1,0 +1,2 @@
+import "./khalti";
+import "./stripe";

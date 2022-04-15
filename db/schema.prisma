@@ -16,12 +16,32 @@ model Admins {
 }
 
 model CApps {
-    id           String   @id @unique
-    name         String   @default("ClientApp")
-    registeredOn DateTime @default(now())
-    apiKey       String   @unique
-    apiSecret    String   @unique
+    id           String    @id @unique
+    name         String    @default("ClientApp")
+    registeredOn DateTime  @default(now())
+    apiKey       String    @unique
+    apiSecret    String    @unique
     callbackUrl  String?
     adminId      String
-    admin        Admins   @relation(fields: [adminId], references: [username])
+    admin        Admins    @relation(fields: [adminId], references: [username])
+    History      History[]
+}
+
+enum TransactionType {
+    TOPUP
+    REDEEM
+    SPECIAL
+}
+
+model History {
+    id              String          @id @unique
+    transactionId   String          @unique
+    serviceProvider String
+    value           Decimal
+    type            TransactionType @default(TOPUP)
+    topupId         String
+    remarks         String          @default("")
+    appId           String
+    app             CApps           @relation(fields: [appId], references: [id])
+    date            DateTime        @default(now())
 }
