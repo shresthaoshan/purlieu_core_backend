@@ -29,6 +29,7 @@ export default class CAppsController {
 
 	getList: Handler = async (req, res) => {
 		const response = await this.service.list((req as AuthedRequest).auth.username);
+
 		res.json(response);
 	};
 

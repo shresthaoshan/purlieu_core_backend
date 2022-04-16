@@ -11,6 +11,7 @@ const historyController = Container.get(HistoryController);
 
 // get
 router.get("/", adminAuthMdlwr, controller.getHome);
+router.get("/list", adminAuthMdlwr, controller.getList);
 router.get("/:id", adminAuthMdlwr, controller.getAppDetails);
 
 // post
