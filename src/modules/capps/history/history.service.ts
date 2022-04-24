@@ -32,6 +32,7 @@ export default class HistoryService {
 		remarks: string,
 		type?: TransactionType
 	) => {
+		console.log({ transactionId, topupAmount });
 		const id = nanoid(10);
 		const newHistory = await this.db.history.create({
 			data: {

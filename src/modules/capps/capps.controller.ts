@@ -19,11 +19,11 @@ export default class CAppsController {
 	};
 
 	postCreate: Handler = async (req, res) => {
-		const { name = "" } = req.body;
+		const { name = "", callbackUrl = "" } = req.body;
 
 		if (!name.length) throw new Error("Name of application required.");
 
-		const response = await this.service.create(name, (req as AuthedRequest).auth.username);
+		const response = await this.service.create(name, callbackUrl, (req as AuthedRequest).auth.username);
 		res.json(response);
 	};
 

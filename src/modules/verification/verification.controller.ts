@@ -23,9 +23,11 @@ export default class VerificationController {
 
 		console.log({ appId, amount, receipent, remarks, token });
 
-		const resp = await this.khaltiService.verify({ amount, token });
+		const { data }: any = await this.khaltiService.verify({ amount, token });
 
-		const { amount: verifiedAmount, idx } = resp;
+		console.log({ data });
+
+		const { amount: verifiedAmount, idx } = data;
 
 		const response = await this.historyService.create(idx, appId, receipent, verifiedAmount, "KHALTI", remarks, "TOPUP");
 

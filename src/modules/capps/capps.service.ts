@@ -6,7 +6,7 @@ import { Inject, Service } from "typedi";
 @Service()
 export default class CAppsService {
 	constructor(@Inject("db") private readonly db: PrismaClient) {}
-	create = async (name: string, admin: string) => {
+	create = async (name: string, callbackUrl: string, admin: string) => {
 		const id = nanoid(10);
 
 		const apiSecretRaw = sha512()
@@ -21,6 +21,7 @@ export default class CAppsService {
 				apiKey: id,
 				apiSecret,
 				admin: { connect: { username: admin } },
+				callbackUrl,
 			},
 			select: {
 				apiKey: true,

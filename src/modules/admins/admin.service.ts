@@ -42,4 +42,15 @@ export default class AdminService {
 			refreshToken: await tokenUtils.signRefreshToken(payload),
 		};
 	};
+
+	refresh = async (refreshToken: string) => {
+		const { username, email, verified }: any = await tokenUtils.verifyRefreshToken(refreshToken);
+
+		const payload = { username, email, verified };
+
+		return {
+			accessToken: await tokenUtils.signAccessToken(payload),
+			refreshToken: await tokenUtils.signRefreshToken(payload),
+		};
+	};
 }
