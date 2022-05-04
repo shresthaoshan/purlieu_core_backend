@@ -11,7 +11,12 @@ export default async () => {
 			extended: false,
 		})
 	);
-	app.use(cors());
+	app.use(
+		cors({
+			origin: ["http://localhost", "http://localhost:3005"],
+			methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
+		})
+	);
 	app.use(json());
 	console.log("PRE MIDDLEWARES:: ✅");
 };

@@ -10,7 +10,7 @@ const commonVerifyOpts: VerifyOptions = {
 
 const signAccessToken = async (payload: any) => {
 	return new Promise((resolve, reject) => {
-		jwt.sign(payload, envConfigs.ACCESS_TOKEN_SECRET, { expiresIn: "2h", ...commonSignOpts }, (err, token) => {
+		jwt.sign(payload, envConfigs.ACCESS_TOKEN_SECRET, { expiresIn: "30s", ...commonSignOpts }, (err, token) => {
 			if (err) reject(err);
 			resolve(token);
 		});

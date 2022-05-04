@@ -8,11 +8,12 @@ generator client {
 }
 
 model Admins {
-    username String  @id @unique
-    email    String  @unique
+    username String   @id @unique
+    email    String   @unique
     password String
+    tokens   String[]
     apps     CApps[]
-    verified Boolean @default(false)
+    verified Boolean  @default(false)
 }
 
 model CApps {

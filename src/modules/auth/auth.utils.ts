@@ -7,8 +7,8 @@ export class AuthError implements Error {
 	code: number;
 	name: string;
 	message: string;
-	constructor(message: string, code?: number) {
-		this.name = "AuthError";
+	constructor(message: string, code?: number, name?: string) {
+		this.name = name ?? "AuthError";
 		this.code = code || 401;
 		this.message = message;
 	}

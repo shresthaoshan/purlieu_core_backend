@@ -37,20 +37,42 @@ export default class AdminService {
 
 		const payload = { username: userExists.username, email: userExists.email, verified: userExists.verified };
 
+		const refreshToken = (await tokenUtils.signRefreshToken(payload)) as string;
+
+		await this.db.admins.update({
+			data: { tokens: { push: refreshToken } },
+			where: { email },
+		});
+
 		return {
 			accessToken: await tokenUtils.signAccessToken(payload),
-			refreshToken: await tokenUtils.signRefreshToken(payload),
+			refreshToken,
 		};
 	};
 
 	refresh = async (refreshToken: string) => {
 		const { username, email, verified }: any = await tokenUtils.verifyRefreshToken(refreshToken);
 
+		const userExists = await this.db.admins.findFirst({ where: { email } });
+		if (!userExists) throw new Error("Corrupted token.");
+
+		const tokenExists = userExists.tokens.includes(refreshToken);
+		if (!tokenExists) {
+			await this.db.admins.update({ data: { tokens: [] }, where: { email } });
+			throw new Error("Corrupted token.");
+		}
+
 		const payload = { username, email, verified };
+		const newRefreshToken = (await tokenUtils.signRefreshToken(payload)) as string;
+
+		await this.db.admins.update({
+			data: { tokens: [...userExists.tokens.filter((item) => item !== refreshToken), newRefreshToken] },
+			where: { email },
+		});
 
 		return {
 			accessToken: await tokenUtils.signAccessToken(payload),
-			refreshToken: await tokenUtils.signRefreshToken(payload),
+			refreshToken: newRefreshToken,
 		};
 	};
 }
