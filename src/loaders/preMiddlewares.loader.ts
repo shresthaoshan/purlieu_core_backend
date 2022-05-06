@@ -13,7 +13,7 @@ export default async () => {
 	);
 	app.use(
 		cors({
-			origin: ["http://localhost", "http://localhost:3005", "https://purlieu-core-frontend.vercel.app"],
+			origin: ["http://localhost", "http://localhost:3005", "http://localhost:3000", "https://purlieu-core-frontend.vercel.app"],
 			methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
 		})
 	);

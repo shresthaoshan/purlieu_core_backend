@@ -15,6 +15,8 @@ export default async (req: Request, _: Response, next: NextFunction) => {
 
 	const app = await appService.findById(apiKey);
 
+	console.log({ app, apiKey });
+
 	(req as any).appAssociated = app;
 
 	next();

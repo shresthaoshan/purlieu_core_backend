@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { sha512 } from "hash.js";
 import { nanoid } from "nanoid";
 import { Inject, Service } from "typedi";
+import { sendNewAppMail } from "utils/mail.utils";
 
 @Service()
 export default class CAppsService {
@@ -25,12 +26,20 @@ export default class CAppsService {
 			},
 			select: {
 				apiKey: true,
+				admin: {
+					select: {
+						email: true,
+					},
+				},
 			},
 		});
-		return {
-			...app,
-			apiSecret: apiSecretRaw,
-		};
+
+		sendNewAppMail([app.admin.email], name, id, apiSecretRaw);
+
+		// return {
+		// 	...app,
+		// 	apiSecret: apiSecretRaw,
+		// };
 	};
 
 	findById = async (appId: string) => {

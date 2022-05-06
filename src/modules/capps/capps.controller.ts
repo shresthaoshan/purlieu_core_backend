@@ -23,8 +23,8 @@ export default class CAppsController {
 
 		if (!name.length) throw new Error("Name of application required.");
 
-		const response = await this.service.create(name, callbackUrl, (req as AuthedRequest).auth.username);
-		res.json(response);
+		await this.service.create(name, callbackUrl, (req as AuthedRequest).auth.username);
+		res.status(200).end();
 	};
 
 	getList: Handler = async (req, res) => {
